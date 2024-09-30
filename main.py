@@ -7,17 +7,20 @@
 import pickle
 import os
 
+current_dir = os.getcwd()
+
 #-----------------------------------------
 #дополнительные функции|: сохранение информации о зоопарке в файл и возможность её загрузки, чтобы у зоопарка было "постоянное состояние" между запусками программы.
 def save_zoo(zoo):
-    with open('C:\\Users\\gorby\\Documents\\GitHub\\lesson_ob03\\zoo_data.pickle', 'wb') as file:
+    file_path = os.path.join(current_dir, 'zoo_data.pickle')
+    with open(file_path, 'wb') as file:
         pickle.dump(zoo, file)
     print("Информация о зоопарке сохранена.")
 
 
 def load_zoo():
     try:
-        file_path = 'C:\\Users\\gorby\\Documents\\GitHub\\lesson_ob03\\zoo_data.pickle'
+        file_path = os.path.join(current_dir, 'zoo_data.pickle')
         if os.path.getsize(file_path) > 0:
             with open(file_path, 'rb') as file:
                 zoo = pickle.load(file)
